@@ -38,7 +38,8 @@ const HomeScreen = () => {
                 fontWeight="bold"
                 color="#544D66"
                 letterSpacing={2}
-                mt="lg"> Manager</Text>
+                mt="lg"
+                mb={25}>Manager</Text>
               <StatusBar style="auto" />
               <Div mt={25}>
                 <Radio value={5} loading />
