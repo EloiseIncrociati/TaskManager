@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Div, Text, Checkbox, Button, Icon, Modal } from 'react-native-magnus';
 import { useDispatch } from 'react-redux';
-import { updateCheckbox } from '../../redux/taskSlice';
 
 const TaskList = ({ item, onDelete }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,16 +15,6 @@ const TaskList = ({ item, onDelete }) => {
   const closeModal = () => {
     setIsVisible(false);
   };
-//   // Update the checkbox state and handle any additional logic
-//   const handleCheckboxChange = () => {
-//     setIsChecked(!isChecked);
-//   };
-//   useEffect(() => {
-//     console.log('item checked :', item)
-//     //update local and redux change
-//     setIsChecked(item.checked);
-//     dispatch(updateCheckbox({ id: item.id, checked: !isChecked }));
-//   }, [item.checked]);
 
   return (
     <TouchableOpacity onPress={() => item.description !== undefined ? openModal() : closeModal()}>
@@ -34,7 +23,7 @@ const TaskList = ({ item, onDelete }) => {
             <Checkbox disabled={false} value={isChecked} onValueChange={!isChecked} activeColor="green500" ml={15} />
         </Div>
         <Div flex={4}>
-            <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.name} {item.id}</Text>
+            <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.name}</Text>
         </Div>
         <Div flex={1}>
             <Button bg='red600' my={10} h={40} w={40} rounded="circle" onPress={() => onDelete()} justifyContent='space-between'>
@@ -43,12 +32,15 @@ const TaskList = ({ item, onDelete }) => {
         </Div>
         <Modal isVisible={isVisible} h={'50%'}>
             <Div flex={1} mx={25} mt={55}>
-              <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">Catégorie</Text>
+              <Text fontFamily='HoneyJelly' fontSize="4xl" color="#433d58">Category : </Text>
+              <Text fontFamily='HoneyJelly' fontSize="2xl" color={item.category.color}>{item.category.name}</Text>
             </Div>
             <Div flex={1} m={25}>
-              <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.name} - item id: {item.id}</Text>
+              <Text fontFamily='HoneyJelly' fontSize="4xl" color="#433d58">Title : </Text>
+              <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.name}</Text>
             </Div>
             <Div flex={3} m={25}>
+              <Text fontFamily='HoneyJelly' fontSize="4xl" color="#433d58">Description : </Text>
               <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.description}</Text>
             </Div>
             <Div flex={2} alignItems='center' justifyContent='center' ml={'30%'}>

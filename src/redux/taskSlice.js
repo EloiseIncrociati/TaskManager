@@ -9,12 +9,13 @@ export const taskSlice = createSlice({
         addTask: (state, action) =>{
             //nanoid generate a random id 
             console.log("nanoid", nanoid());
-            console.log("action payload", action.payload);
+            console.log("action payload", action.payload.id);
             const newTask = {
                 id: nanoid(),
                 name: action.payload.task,
                 description: action.payload.desc,
                 isChecked:false,
+                category: action.payload.category,
             };
             state.push(newTask);
         },

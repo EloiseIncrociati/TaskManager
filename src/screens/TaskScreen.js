@@ -15,6 +15,23 @@ const TaskScreen = () => {
   const onDelete = (id) => {
     dispatch(deleteTask({ id: id }));
   };
+
+  // Sort tasks by category name
+  const sortedTasks = [...todos].sort((a, b) => {
+    const categoryA = a.category.name.toUpperCase();
+    const categoryB = b.category.name.toUpperCase();
+
+    if (categoryA < categoryB) {
+      return -1;
+    }
+
+    if (categoryA > categoryB) {
+      return 1;
+    }
+
+    return 0;
+  });
+  
   return(
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground 
@@ -25,17 +42,31 @@ const TaskScreen = () => {
         <Div>
           <Header />
         </Div>
-        {(todos && todos.length > 0) ? (
+        {sortedTasks.length > 0 ? (
           <Div mt={25} h={'65%'}>
             <FlatList
-              data={todos}
-              renderItem={({ item }) => <TaskList item={item} onDelete={() => onDelete(item.id)} />}
+              data={sortedTasks}
+              renderItem={({ item, index }) => (
+                <>
+                  {index === 0 || sortedTasks[index - 1].category.name !== item.category.name ? (
+                    <Div m={15}>
+                      <Text fontFamily='HoneyJelly' fontSize="4xl" color={item.category.color} mt={10}>
+                        {item.category.name}
+                      </Text>
+                    </Div>
+
+                  ) : null}
+                  <TaskList item={item} onDelete={() => onDelete(item.id)} />
+                </>
+              )}
               keyExtractor={(item) => item.id.toString()}
             />
           </Div>
         ) : (
           <Div mt={25} h={'65%'} alignItems='center'>
-            <Text fontFamily='HoneyJelly' fontSize="2xl" color="white">You have no task here, create one !</Text>
+            <Text fontFamily='HoneyJelly' fontSize="2xl" color="white">
+              You have no task here, create one!
+            </Text>
           </Div>
         )}
         <Div alignItems='flex-end' justifyContent='flex-end' m={20}> 

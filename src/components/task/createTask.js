@@ -1,5 +1,5 @@
 import React, {createRef, useState} from 'react';
-import { Alert, TextInput } from 'react-native';
+import { Alert, TextInput, ChildComponent } from 'react-native';
 import { Div, Button, Icon, Dropdown, Text } from 'react-native-magnus';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/taskSlice';
@@ -11,8 +11,13 @@ const CreateTask = () => {
   //set value user entered
   const [todo, setTodo] = useState("");
   const [desc, setDesc] = useState(undefined);
+  const [childData, setChildData] = useState(null);
   const dispatch = useDispatch();
 
+  // Callback function to receive data from the child component
+  const handleChildData = (data) => {
+    setChildData(data);
+  };
   //function submit a new task
   const onSubmitTask = () => {
     //if no data
@@ -21,11 +26,20 @@ const CreateTask = () => {
       setTodo("");
       return;
     }
+
+    //to avoid a non-serializable value error, we transform our data 
+    console.log('ICI:', childData);
+    const category = {
+      color: childData.color,
+      id: childData.id,
+      name: childData.name,
+    };
     //use addTask function from our redux file taskSlice
     dispatch(
       addTask({
         task: todo,
         desc: desc,
+        category: category,
       })
     );
     setTodo("");
@@ -45,7 +59,7 @@ const CreateTask = () => {
       <Dropdown
         ref={dropdownRef}
         title={
-          <Text fontSize="xl" mx="xl" color="white" pb="md">
+          <Text fontFamily='HoneyJelly' fontSize="xl" mx="xl" color="white" pb="md">
             Create a new task
           </Text>
         }
@@ -55,6 +69,7 @@ const CreateTask = () => {
         showSwipeIndicator={true}
         roundedTop="xl"
         style={{backgroundColor: '#9287af'}}
+        h={'70%'}
       >
         <Div alignItems='center' justifyContent='center'>
           <TextInput
@@ -65,6 +80,7 @@ const CreateTask = () => {
               margin: 10,
               width: "90%",
               borderRadius: 5,
+              fontFamily:'HoneyJelly'
             }}
             placeholder="Add new task"
             onChangeText={setTodo}
@@ -72,6 +88,7 @@ const CreateTask = () => {
           />
           <TextInput
             style={{
+              fontFamily:'HoneyJelly',
               borderColor: "#433d58",
               borderWidth: 1,
               padding: 10,
@@ -84,22 +101,26 @@ const CreateTask = () => {
             onChangeText={setDesc}
             value={desc}
           />
-          <CreateCategory />
+          <Div h={'45%'}>
+            <CreateCategory onDataReceived={handleChildData}/>  
+          </Div>
+
           <Div alignItems='center' justifyContent='center'>
             {/*Submit Button */}
             <Dropdown.Option onPress={onSubmitTask}
-                mt="lg"
-                ml="md"
-                px="xl"
-                py="lg"
-                bg="#433d58"
-                rounded="circle"
-                color="white"
-                shadow={2}
-                w={'35%'}
-                prefix={
-                  <Icon name="checkcircle" mr={15} color="white" fontSize="xl" />
-                }
+              fontFamily='HoneyJelly'
+              mt="lg"
+              ml="md"
+              px="xl"
+              py="lg"
+              bg="#433d58"
+              rounded="circle"
+              color="white"
+              shadow={2}
+              w={'35%'}
+              prefix={
+                <Icon name="checkcircle" mr={15} color="white" fontSize="xl" />
+              }
             >
               Submit
             </Dropdown.Option>
