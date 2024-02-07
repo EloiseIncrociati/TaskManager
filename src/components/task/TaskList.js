@@ -22,6 +22,11 @@ const TaskList = ({ item, onDelete }) => {
         <Div flex={1}>
             <Checkbox disabled={false} value={isChecked} onValueChange={!isChecked} activeColor="green500" ml={15} />
         </Div>
+        {item.description ? 
+          <Icon name='eye' fontFamily='AntDesign' fontSize={25} color={item.category.color} mr={15} />
+        :
+          <Text/>
+        }
         <Div flex={4}>
             <Text fontFamily='HoneyJelly' fontSize="2xl" color="#433d58">{item.name}</Text>
         </Div>
