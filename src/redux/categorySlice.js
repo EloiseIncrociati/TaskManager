@@ -5,13 +5,12 @@ export const categorySlice = createSlice({
     name: "categories",
     initialState: [],
     reducers: {
-        //add a category using nanoid for id
+        //add a category
         addCategory: (state, action) =>{
-            //nanoid generate a random id 
-            console.log("nanoid", nanoid());
+            //take the id of our item 
             console.log("action payload", action.payload);
             const newCategory = {
-                id: nanoid(),
+                id: action.payload.id,
                 name: action.payload.category,
                 color: action.payload.color,
             };

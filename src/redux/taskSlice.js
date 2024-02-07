@@ -14,6 +14,7 @@ export const taskSlice = createSlice({
                 id: nanoid(),
                 name: action.payload.task,
                 description: action.payload.desc,
+                isChecked:false,
             };
             state.push(newTask);
         },
@@ -24,6 +25,19 @@ export const taskSlice = createSlice({
             //use filter to exclude the item with our id 
             return state.filter((item) => item.id !== action.payload.id);
         },
+        //update the state of our checkbox action
+        // updateCheckbox: (state, action) => {
+        //   const { id, isChecked } = action.payload;
+          
+        //   // Ensure tasks is an array before using map
+        //   state.tasks = state.tasks || [];
+    
+        //   // Use Immer to update the checkbox state for the task with the specified id
+        //   const taskIndex = state.tasks.findIndex(task => task.id === id);
+        //   if (taskIndex !== -1) {
+        //     state.tasks[taskIndex].isChecked = isChecked;
+        //   }
+        // },
     },
 });
 
