@@ -25,11 +25,11 @@ Installation
 
     Clone the repository:
 
-    	git clone https://github.com/your-username/task-management-app.git
+    	git clone [https://github.com/your-username/task-manager-app.git](https://github.com/EloiseIncrociati/TaskManager.git)
 
     Navigate to the project directory:
  
-	cd task-management-app
+	cd task-manager-app
 
     Install dependencies:
 	npm install
