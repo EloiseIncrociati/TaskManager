@@ -10,7 +10,6 @@ Table of Contents
     Screenshots
     Technologies
     Contributing
-    License
 
 Introduction
 
