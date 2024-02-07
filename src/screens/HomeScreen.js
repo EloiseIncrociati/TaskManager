@@ -20,26 +20,13 @@ const HomeScreen = () => {
     }, []);
   
     return (
-        <LinearGradient colors={['#AEE6FE', '#78C8EA', '#1487B8']} style={{height: '100%', justifyContent: 'center'}}>
+        <LinearGradient colors={['#4c3e66', '#a78dd9']} style={{height: '100%', justifyContent: 'center'}}>
           <Div alignItems='center' justifyContent='center'>
-            <Image h={200} w={200} m={10}
+            <Image h={'70%'} w={'60%'} mt={50}
               source={require('../assets/images/homeclipboard.png')}
             />
             </Div>
             <Div alignItems='center' justifyContent='center' mt={50}>
-              <Text fontSize={50}
-                fontFamily='HoneyJelly'
-                fontWeight="bold"
-                color="#544D66"
-                letterSpacing={2}
-                mt="lg">Task </Text>
-              <Text fontSize={50}
-                fontFamily='HoneyJelly'
-                fontWeight="bold"
-                color="#544D66"
-                letterSpacing={2}
-                mt="lg"
-                mb={25}>Manager</Text>
               <StatusBar style="auto" />
               <Div mt={25}>
                 <Radio value={5} loading />

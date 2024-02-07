@@ -13,6 +13,7 @@ export const taskSlice = createSlice({
             const newTask = {
                 id: nanoid(),
                 name: action.payload.task,
+                description: action.payload.desc,
             };
             state.push(newTask);
         },

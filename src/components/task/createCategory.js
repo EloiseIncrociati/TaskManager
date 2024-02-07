@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 const CreateCategory = () => {
 
   return(
-    <Div mx={25} my={5} > 
-        <Text>Create Category</Text>
+    <Div m={35} > 
+        <Text>Choose your category</Text>
     </Div>
   )  
 };
