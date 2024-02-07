@@ -16,7 +16,7 @@ const HomeScreen = () => {
     useEffect(() => {
       setTimeout(() => {
           navigation.navigate('Task');
-      }, 2500);
+      }, 2000);
     }, []);
   
     return (

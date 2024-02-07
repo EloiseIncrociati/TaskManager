@@ -4,11 +4,11 @@ import { Div, Text, Checkbox, Button, Icon, Modal } from 'react-native-magnus';
 import { useDispatch } from 'react-redux';
 
 const TaskList = ({ item, onDelete }) => {
-  const [isVisible, setIsVisible] = useState(false);
   //checkbox status
   const [isChecked, setIsChecked] = useState(false);
-  //const [isChecked, setIsChecked] = useState(item.checked);
   const dispatch = useDispatch();
+  //modal uses
+  const [isVisible, setIsVisible] = useState(false);
   const openModal = () => {
     setIsVisible(true);
   };

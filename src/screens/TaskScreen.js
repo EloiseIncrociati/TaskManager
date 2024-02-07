@@ -9,9 +9,10 @@ import TaskList from '../components/task/TaskList';
 import { Div, Text, Checkbox, Button, Icon, Modal } from 'react-native-magnus';
 
 const TaskScreen = () => {
+  //useDispatch to recover data with useSelector (slice action)
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.tasks);
-
+  //function to delete a task by id
   const onDelete = (id) => {
     dispatch(deleteTask({ id: id }));
   };
@@ -78,19 +79,9 @@ const TaskScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   image: {
     flex: 1,
     justifyContent: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
 });
 
