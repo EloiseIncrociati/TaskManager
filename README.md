@@ -1,5 +1,5 @@
 Task Manager
-
+(This project is a challenge to code in 1 week ! Contact me for more informations)
 A simple task management application built with React Native.
 Table of Contents
 
